@@ -2,10 +2,10 @@ provider "aws" {
     region = "eu-north-1"
 }
 resource "null_resource" "run_ansible" {
-  depends_on = [aws_instance.web]
+  depends_on = [aws_instance.MyEC2]
  
   provisioner "local-exec" {
-    command = "ansible-playbook -i host.ini playbooks.yaml"
+    command = "ansible-playbook -i host.ini playbook.yaml"
   }
 }
 terraform {
@@ -25,6 +25,7 @@ resource "aws_instance" "MyEC2" {
       Name = "EC2-Instance-Affan"
     }
 }
+
 
 
 
