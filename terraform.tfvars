@@ -1,3 +1,4 @@
-region = "us-west-2"
-ami_id = "ami-0c55b159cbfafe1f0"
+
+ami_id = "ami-0c7d68785ec07306c"
 instance_type = "t3.micro"
+
