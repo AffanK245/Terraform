@@ -8,6 +8,12 @@ resource "null_resource" "run_ansible" {
     command = "ansible-playbook -i host.ini playbook.yaml"
   }
 }
+resource "null_resource" "run_ansible" {
+  provisioner "local-exec" {
+    command = "sleep 30 && ansible-playbook -i /etc/ansible/host.ini playbook.yaml"
+  }
+}
+
 terraform {
   backend "s3" {
     bucket         = "my-terraform-state-bucket-affan1"
@@ -24,6 +30,7 @@ resource "aws_instance" "MyEC2" {
       Name = "EC2-Instance-Affan"
     }
 }
+
 
 
 
