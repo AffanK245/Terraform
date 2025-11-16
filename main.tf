@@ -3,7 +3,7 @@ provider "aws" {
 }
 terraform {
   backend "s3" {
-    bucket         = "my-terraform-state-bucket-affan"
+    bucket         = "my-terraform-state-bucket-affan1"
     key            = "prod/terraform.tfstate"
     region         = "eu-north-1"
     dynamodb_table = "2439071dynamodb"
@@ -17,5 +17,6 @@ resource "aws_instance" "MyEC2" {
       Name = "EC2-Instance-Affan"
     }
 }
+
 
 
