@@ -20,11 +20,11 @@ terraform {
 resource "aws_instance" "MyEC2" {
     ami           = var.ami_id
     instance_type = var.instance_type
-    key_name      = "my-keypair" 
     tags = {
       Name = "EC2-Instance-Affan"
     }
 }
+
 
 
 
