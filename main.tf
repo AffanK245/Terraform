@@ -1,6 +1,13 @@
 provider "aws" {
     region = "eu-north-1"
 }
+resource "null_resource" "run_ansible" {
+  depends_on = [aws_instance.web]
+ 
+  provisioner "local-exec" {
+    command = "ansible-playbook -i host.ini playbooks.yaml"
+  }
+}
 terraform {
   backend "s3" {
     bucket         = "my-terraform-state-bucket-affan1"
@@ -18,6 +25,7 @@ resource "aws_instance" "MyEC2" {
       Name = "EC2-Instance-Affan"
     }
 }
+
 
 
 
