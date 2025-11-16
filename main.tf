@@ -1,17 +1,5 @@
 provider "aws" {
-    region = "eu-north-1"
-}
-resource "null_resource" "run_ansible" {
-  depends_on = [aws_instance.MyEC2]
- 
-  provisioner "local-exec" {
-    command = "ansible-playbook -i host.ini playbook.yaml"
-  }
-}
-resource "null_resource" "run_ansible" {
-  provisioner "local-exec" {
-    command = "sleep 30 && ansible-playbook -i /etc/ansible/host.ini playbook.yaml"
-  }
+  region = "eu-north-1"
 }
 
 terraform {
@@ -23,18 +11,19 @@ terraform {
     encrypt        = true
   }
 }
+
 resource "aws_instance" "MyEC2" {
-    ami           = var.ami_id
-    instance_type = var.instance_type
-    tags = {
-      Name = "EC2-Instance-Affan"
-    }
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  tags = {
+    Name = "EC2-Instance-Affan"
+  }
 }
 
+resource "null_resource" "run_ansible" {
+  depends_on = [aws_instance.MyEC2]
 
-
-
-
-
-
-
+  provisioner "local-exec" {
+    command = "sleep 30 && ansible-playbook -i /etc/ansible/host.ini playbook.yaml"
+  }
+}
