@@ -12,18 +12,19 @@ terraform {
   }
 }
 
-resource "aws_instance" "MyEC2" {
+resource "aws_instance" "MyEC21" {
   ami           = var.ami_id
   instance_type = var.instance_type
   tags = {
-    Name = "EC2-Instance-Affan"
+    Name = "EC2-Instance"
   }
 }
 
 resource "null_resource" "run_ansible" {
-  depends_on = [aws_instance.MyEC2]
+  depends_on = [aws_instance.MyEC21]
 
   provisioner "local-exec" {
     command = "sleep 30 && ansible-playbook -i /etc/ansible/host.ini playbook.yaml"
   }
 }
+
