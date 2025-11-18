@@ -13,13 +13,4 @@
         state: started
         enabled: yes
 
-    - name: Install Apache (httpd)
-      package:
-        name: httpd
-        state: present
-
-    - name: Start Apache
-      service:
-        name: httpd
-        state: started
-        enabled: yes
+  
