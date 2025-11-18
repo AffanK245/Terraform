@@ -20,7 +20,6 @@ resource "aws_instance" "MyEC21" {
   }
 }
 resource "aws_eip" "MyElasticIP" {
-  vpc      = true
   depends_on = [ aws_instance.MyEC21 ]
   
   tags = {
@@ -38,5 +37,6 @@ resource "null_resource" "run_ansible" {
     command = "sleep 30 && ansible-playbook -i /etc/ansible/host.ini playbook.yaml"
   }
 }
+
 
 
