@@ -19,24 +19,15 @@ resource "aws_instance" "MyEC21" {
     Name = "EC2-Instance"
   }
 }
-resource "aws_eip" "MyElasticIP" {
-  depends_on = [ aws_instance.MyEC21 ]
-  
-  tags = {
-    Name = "ElasticIP-Affan"
-  }
-}
-resource "aws_eip_association" "MyEIPAssociation" {
-  instance_id = aws_instance.MyEC21.id
-  allocation_id = aws_eip.MyElasticIP.id
-}
+
 resource "null_resource" "run_ansible" {
   depends_on = [aws_instance.MyEC21]
 
   provisioner "local-exec" {
-    command = "sleep 30 && ansible-playbook -i /etc/ansible/host.ini playbook.yaml"
+    command = "sleep 30 && ansible-playbook -i host.ini playbook.yaml"
   }
 }
+
 
 
 
